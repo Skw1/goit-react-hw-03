@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import css from "./ContactForm.module.css"
+import { nanoid } from 'nanoid'; 
+import css from "./ContactForm.module.css";
 
 const ContactForm = ({ onAddContact }) => {
   return (
@@ -11,7 +12,7 @@ const ContactForm = ({ onAddContact }) => {
         number: Yup.string().required('Number is required').min(3, 'Minimum 3 characters'),
       })}
       onSubmit={(values, { resetForm }) => {
-        onAddContact({ id: Math.random().toString(), ...values });
+        onAddContact({ id: nanoid(), ...values });  
         resetForm();
       }}
     >
